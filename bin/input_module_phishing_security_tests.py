@@ -74,7 +74,9 @@ def collect_events(helper, ew):
             new_url=url + '/' + pstid + '/recipients'
             result_response = requests.request("GET", new_url, headers=headers, data=payload)
             for recipient in result_response.json():
-                event = helper.new_event(source=helper.get_input_type(), index=helper.get_output_index(), sourcetype=helper.get_sourcetype(), data=str(recipient))
+                data = str(recipient)
+                data = data.replace('None', '"None"')
+                event = helper.new_event(source=helper.get_input_type(), index=helper.get_output_index(), sourcetype=helper.get_sourcetype(), data=data)
                 if single_day(recipient['delivered_at']):
                     ew.write_event(event)
                 elif single_day(recipient['opened_at']):
