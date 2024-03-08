@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<view template="TA-knowbe4-security-tests:templates/base.html" type="html" isDashboard="False">
+    <label>Configuration</label>
+</view>
